@@ -12,6 +12,14 @@ li {
   list-style-type: none;
 }
 
+.bg-green {
+  width: 100vw;
+  height: 140px;
+  background-color: #009688;
+  position: absolute;
+  z-index: 0;
+}
+
 .container {
   width: 100vw;
   height: 100vh;
@@ -24,6 +32,7 @@ li {
   width: 75%;
   background-color: #fff;
   margin: 20px 0;
+  z-index: 1;
 }
 
 /***USER***/
@@ -58,6 +67,7 @@ li {
   font-size: 18px;
   display: flex;
   padding: 10px;
+  cursor: pointer;
 }
 
 .user-options li:not(:last-child){
@@ -111,12 +121,12 @@ li {
 
 .friend-name {
   color: #2d2d2d;
-  font-size: 20px;
+  font-size: 17px;
   margin-bottom: 5px;
 }
 
 .friend-preview {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .friend-time {
@@ -167,12 +177,12 @@ li {
 }
 
 .friend-bar-name {
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .friend-bar-status {
   color: #a8a8a8;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .main-chat {
@@ -226,6 +236,27 @@ li {
   margin-left: 10%;
 }
 
-.main-chat p:first-child {
+.main-chat div:first-child {
   margin-bottom: 20px;
+}
+
+.text-message {
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.time-message {
+  margin-right: 3px;
+}
+
+.info-message {
+  color: #999;
+  font-size: 10px;
+  position: relative;
+  top: 12px;
+  left: 10px;
+}
+
+.info-message i {
+  margin-bottom: 3px;
 }
