@@ -47,24 +47,24 @@ function newFriendMessage() {
   $(".main-chat").append(templateMsg);
 }
 
-var countUp = 0;
-
+//ogni volta che viene digitata una lettera da tastiera nella barra search dei contatti
+//per ogni elemento friend vado a leggere il suo attributo e verifico che nel valore
+//dell'attributo ci sia uno dei caratteri digitati; se cancello delle lettere mi
+//mostra nuovamente la lista contatti
 $(".chat-search").keyup(function(event) {
-  var search = $(".chat-search").val().split("");
-  console.log(search);
+  var search = $(".chat-search").val().toLowerCase();
+  console.log("search: " + search);
+  $(".friend").hide();
   if (search.length > 0) {
     $(".friend").each(function(){
-      searchFriend = $(this).attr("data-friend-name").split("");
-      if(searchFriend[countUp] == search) {
-        var friendJoined = searchFriend.join("");
-        console.log(friendJoined);
-        $(".friend").removeClass("selected").hide();
-        $(this).addClass("selected").show();
+      searchFriend = $(this).attr("data-friend-name");
+      if(searchFriend.includes(search)) {
+        $(this).show();
+        console.log("searchFriend " + searchFriend);
       }
     });
   }
   if (event.which == 8) {
-    countUp--;
     $(".user-friends").first().addClass("selected");
     $(".friend").show();
   }
