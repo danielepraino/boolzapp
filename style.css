@@ -111,6 +111,10 @@ li {
   border-bottom: 1px solid #eee;
 }
 
+.friend.selected {
+  background-color: #e9ebeb;
+}
+
 .friend-text {
   color: #8b8b8b;
   display: flex;
@@ -129,6 +133,11 @@ li {
   font-size: 14px;
 }
 
+.friend-preview i {
+  margin-right: 3px;
+}
+
+
 .friend-time {
   color: #adaeae;
   font-size: 12px;
@@ -144,16 +153,16 @@ li {
 }
 
 ::-webkit-scrollbar-track {
-	background-color: #fff;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar {
 	width: 7px;
-	background-color: #fff;
+	background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: #ccc;
+	background-color: rgba(204, 204, 204, .8);
 }
 
 /***MESSAGES***/
@@ -189,6 +198,7 @@ li {
   display: flex;
   flex-direction: column-reverse;
   flex-grow: 1;
+  overflow-y: scroll;
 }
 
 .messages {
@@ -214,7 +224,7 @@ li {
   cursor: pointer;
 }
 
-/**INPUTE MESSAGE STYLE**/
+/**INPUT MESSAGE STYLE**/
 
 .new-message {
   max-width: 75%;
