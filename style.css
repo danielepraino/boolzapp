@@ -12,6 +12,10 @@ li {
   list-style-type: none;
 }
 
+input:focus {
+  outline: none;
+}
+
 .bg-green {
   width: 100vw;
   height: 140px;
@@ -196,9 +200,11 @@ li {
 
 .main-chat {
   display: flex;
-  flex-direction: column-reverse;
+  justify-content: flex-end;
+  flex-direction: column;
   flex-grow: 1;
   overflow-y: scroll;
+  padding-bottom: 20px;
 }
 
 .messages {
@@ -244,10 +250,6 @@ li {
   background-color: #fff;
   align-self: flex-start;
   margin-left: 10%;
-}
-
-.main-chat div:first-child {
-  margin-bottom: 20px;
 }
 
 .text-message {

@@ -1,6 +1,6 @@
 //richiamo la data da visualizzare nei messaggi
 var now = new Date();
-var time = now.getHours() + ":" + now.getMinutes();
+var time = now.getHours(2) + ":" + now.getMinutes(2);
 
 //al click dell'icona invio il messaggio
 $(".send-button").click(function(){
@@ -28,8 +28,8 @@ function newUserMessage() {
   var newTextMsg = $(".input-message").val();
   if (newTextMsg.length > 0) {
     templateMsg = $(".template-message .new-message").clone();
-    templateMsg.children(".text-message").text(newTextMsg);
-    templateMsg.children(".info-message").children(".time-message").text(time);
+    templateMsg.find(".text-message").text(newTextMsg);
+    templateMsg.find(".time-message").text(time);
     templateMsg.addClass("usermsg");
     $(".main-chat").append(templateMsg);
     $(".input-message").val("");
@@ -40,9 +40,9 @@ function newUserMessage() {
 //creo una funzione che genera un nuovo messaggio amici (in bianco)
 function newFriendMessage() {
   templateMsg = $(".template-message .new-message").clone();
-  templateMsg.children(".text-message").text("Ok!");
-  templateMsg.children(".info-message").children(".time-message").text(time);
-  templateMsg.children(".info-message").children("i").hide();
+  templateMsg.find(".text-message").text("Ok!");
+  templateMsg.find(".time-message").text(time);
+  templateMsg.find("i").hide();
   templateMsg.addClass("friendmsg");
   $(".main-chat").append(templateMsg);
 }
@@ -53,14 +53,12 @@ function newFriendMessage() {
 //mostra nuovamente la lista contatti
 $(".chat-search").keyup(function(event) {
   var search = $(".chat-search").val().toLowerCase();
-  console.log("search: " + search);
   $(".friend").hide();
   if (search.length > 0) {
     $(".friend").each(function(){
       searchFriend = $(this).attr("data-friend-name");
       if(searchFriend.includes(search)) {
         $(this).show();
-        console.log("searchFriend " + searchFriend);
       }
     });
   }
