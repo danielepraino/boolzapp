@@ -1,6 +1,9 @@
 //richiamo la data da visualizzare nei messaggi
-var now = new Date();
-var time = now.getHours(2) + ":" + now.getMinutes(2);
+function timeGen() {
+  var now = new Date();
+  var time = now.getHours() + ":" + now.getMinutes();
+  return time;
+}
 
 //al click dell'icona invio il messaggio
 $(".send-button").click(function(){
@@ -29,7 +32,7 @@ function newUserMessage() {
   if (newTextMsg.length > 0) {
     templateMsg = $(".template-message .new-message").clone();
     templateMsg.find(".text-message").text(newTextMsg);
-    templateMsg.find(".time-message").text(time);
+    templateMsg.find(".time-message").text(timeGen());
     templateMsg.addClass("usermsg");
     $(".main-chat").append(templateMsg);
     $(".input-message").val("");
@@ -41,7 +44,7 @@ function newUserMessage() {
 function newFriendMessage() {
   templateMsg = $(".template-message .new-message").clone();
   templateMsg.find(".text-message").text("Ok!");
-  templateMsg.find(".time-message").text(time);
+  templateMsg.find(".time-message").text(timeGen());
   templateMsg.find("i").hide();
   templateMsg.addClass("friendmsg");
   $(".main-chat").append(templateMsg);
@@ -67,3 +70,48 @@ $(".chat-search").keyup(function(event) {
     $(".friend").show();
   }
 });
+
+
+var friendsArr = [
+  {
+    "name": "Arya",
+    "img": "arya.jpg",
+    "preview": "Ciao fratellì!",
+    "time": timeGen(),
+    "status": "online"
+  },
+  {
+    "name": "Daenerys",
+    "img": "daenerys.jpg",
+    "preview": "Ci vediamo stasera",
+    "time": timeGen(),
+    "status": "online"
+  },
+  {
+    "name": "Melisandre",
+    "img": "melisandre.jpg",
+    "preview": "Perchè la notte è buia e piena di terrori",
+    "time": timeGen(),
+    "status": "online"
+  }
+];
+
+friendsList(friendsArr);
+
+function friendsList(arr) {
+  for (var i = 0; i < arr.length; i++) {
+    friendGen(i);
+  }
+}
+
+function friendGen(i) {
+  templateFriend = $(".friend-template .list").clone();
+  templateFriend.addClass("list");
+  $(".friend-template").attr("data-friend-name", friendsArr[i].name.toLowerCase());
+  $(".friend-img img").attr("src", "img/" + friendsArr[i].img + "");
+  $(".friend-text").find(".friend-name").text(friendsArr[i].name);
+  $(".friend-text").find(".friend-preview").text(friendsArr[i].preview);
+  $(".friend-time p").text(friendsArr[i].time);
+  $(".friend-bar-status").text(friendsArr[i].status);
+  $(".user-friends").appendTo(templateFriend);
+}

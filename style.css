@@ -108,11 +108,15 @@ input:focus {
   color: #a3a3a3;
 }
 
-.friend {
-  display: flex;
+.friend-template {
   justify-content: flex-start;
   padding: 10px;
   border-bottom: 1px solid #eee;
+  display: none;
+}
+
+.friend-template.list {
+  display: flex;
 }
 
 .friend.selected {
@@ -140,7 +144,6 @@ input:focus {
 .friend-preview i {
   margin-right: 3px;
 }
-
 
 .friend-time {
   color: #adaeae;
@@ -271,4 +274,8 @@ input:focus {
 
 .info-message i {
   margin-bottom: 3px;
+}
+
+.template-message {
+  display: none;
 }
