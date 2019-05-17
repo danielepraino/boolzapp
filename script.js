@@ -223,16 +223,16 @@ function friendsList(arr) {
 //creo una funzione che va a popolare il singolo contatto per la lista amici
 //ATTENZIONE BUG: clona gli elementi e modifica il tutto allo stesso elemento
 function friendGen(i) {
-  var templateFriend = $(".friend-template").first().clone();
+  var templateFriend = $(".master-friend .friend-template ").clone();
   templateFriend.addClass("list");
-  $(".friend-template").attr("data-pos", i);
-  $(".friend-template").attr("data-friend-name", friendsArr[i].name.toLowerCase());
-  $(".friend-img img").attr("src", "img/" + friendsArr[i].img + "");
-  $(".friend-text").find(".friend-name").text(friendsArr[i].name);
-  $(".friend-time p").text(friendsArr[i].time);
+  templateFriend.attr("data-pos", i);
+  templateFriend.attr("data-friend-name", friendsArr[i].name.toLowerCase());
+  templateFriend.find(".friend-img img").attr("src", "img/" + friendsArr[i].img + "");
+  templateFriend.find(".friend-name").text(friendsArr[i].name);
+  templateFriend.find(".friend-time p").text(friendsArr[i].time);
   $(".friend-bar-status").text(friendsArr[i].status);
   var arrLength = chatArr[i].length;
-  $(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-2][0]);
+  templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-2][0]);
   $(".user-friends").append(templateFriend);
 }
 
@@ -262,3 +262,7 @@ $(".friend-template.list").click(function(){
 function upperCaseFirstLetter(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
+
+// $(document).on("click", "selettore", function(){
+//
+// });
