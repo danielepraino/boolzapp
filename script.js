@@ -33,41 +33,6 @@ $(".input-message").focusout(function(){
   $(".send-button i").removeClass("fa-paper-plane");
 });
 
-//creo una funzione che genera un nuovo messaggio utente (in verde)
-//creo un interval che dopo 1 secondo invia un messaggio automatico
-function newUserMessage() {
-  var newTextMsg = $(".input-message").val();
-  if (newTextMsg.length > 0) {
-    templateMsg = $(".template-message .new-message").clone();
-    templateMsg.find(".text-message").text(newTextMsg);
-    templateMsg.find(".time-message").text(timeGen());
-    templateMsg.addClass("usermsg");
-    $(".main-chat").append(templateMsg);
-    $(".input-message").val("");
-    setTimeout(function() {
-      newFriendMessage("Ok!");
-    }, 1000);
-  }
-}
-
-//creo una funzione che genera un nuovo messaggio amici (in bianco)
-function newFriendMessage(text) {
-  templateMsg = $(".template-message .new-message").clone();
-  templateMsg.find(".text-message").text(text);
-  templateMsg.find(".time-message").text(timeGen());
-  templateMsg.addClass("friendmsg");
-  $(".main-chat").append(templateMsg);
-}
-
-function newAutoUserMessage(text) {
-  var newTextMsg = $(".input-message").val();
-    templateMsg = $(".template-message .new-message").clone();
-    templateMsg.find(".text-message").text(text);
-    templateMsg.find(".time-message").text(timeGen());
-    templateMsg.addClass("usermsg");
-    $(".main-chat").append(templateMsg);
-}
-
 //creo un array con i contatti, ogni contatto avrà le sue proprietà
 var friendsArr = [
   {
@@ -191,28 +156,24 @@ var chatArr = [
 //richiamo la funzione per generare la lista contatti amici
 friendsList(friendsArr);
 
-//creo una funzione che genera al lista dei contatti amici
+//creo una funzione che genera al lista dei contatti amici andando a popolare il singolo contatto
 function friendsList(arr) {
   for (var i = 0; i < arr.length; i++) {
-    friendGen(i);
+    var templateFriend = $(".master-friend .friend-template ").clone();
+    templateFriend.addClass("list");
+    templateFriend.attr("data-pos", i);
+    templateFriend.attr("data-friend-name", friendsArr[i].name.toLowerCase());
+    templateFriend.find(".friend-img img").attr("src", "img/" + friendsArr[i].img + "");
+    templateFriend.find(".friend-name").text(friendsArr[i].name);
+    templateFriend.find(".friend-time p").text(friendsArr[i].time);
+    $(".friend-bar-status").text(friendsArr[i].status);
+    var arrLength = chatArr[i].length;
+    templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-1][0]);
+    $(".user-friends").append(templateFriend);
   }
 }
 
-//creo una funzione che va a popolare il singolo contatto per la lista amici
-//ATTENZIONE BUG: clona gli elementi e modifica il tutto allo stesso elemento
-function friendGen(i) {
-  var templateFriend = $(".master-friend .friend-template ").clone();
-  templateFriend.addClass("list");
-  templateFriend.attr("data-pos", i);
-  templateFriend.attr("data-friend-name", friendsArr[i].name.toLowerCase());
-  templateFriend.find(".friend-img img").attr("src", "img/" + friendsArr[i].img + "");
-  templateFriend.find(".friend-name").text(friendsArr[i].name);
-  templateFriend.find(".friend-time p").text(friendsArr[i].time);
-  $(".friend-bar-status").text(friendsArr[i].status);
-  var arrLength = chatArr[i].length;
-  templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-1][0]);
-  $(".user-friends").append(templateFriend);
-}
+var pos;
 
 //creo una funzione che, al click del contatto lo selezione a va a popolare
 //la chat con il contenuto dell'array delle chat fake, alla posizione corrispondente
@@ -220,8 +181,8 @@ $(".friend-template.list").click(function(){
   $(".friend-template.list").removeClass("selected");
   $(".main-chat").empty();
   $(this).addClass("selected");
-  var pos = $(this).attr("data-pos");
-  var name = $(this).attr("data-friend-name");
+  pos = $(this).attr("data-pos");
+  name = $(this).attr("data-friend-name");
   $(".user-img").attr("src", "img/" + name + ".jpg");
   $(".friend-bar-name").text(upperCaseFirstLetter(name));
   $(".message-menu").css({ "opacity": "0" });
@@ -234,10 +195,48 @@ $(".friend-template.list").click(function(){
   }
 });
 
+//creo una funzione che genera un nuovo messaggio utente (in verde) scritto dall'utente
+//creo un interval che dopo 1 secondo invia un messaggio automatico
+function newUserMessage() {
+  var newTextMsg = $(".input-message").val();
+  if (newTextMsg.length > 0) {
+    chatArr[pos].push([newTextMsg, 1]);
+    templateMsg = $(".template-message .new-message").clone();
+    templateMsg.find(".text-message").text(newTextMsg);
+    templateMsg.find(".time-message").text(timeGen());
+    templateMsg.addClass("usermsg");
+    $(".main-chat").append(templateMsg);
+    $(".input-message").val("");
+    setTimeout(function() {
+      var autoText = "Ok!";
+      chatArr[pos].push([autoText, 0]);
+      newFriendMessage(autoText);
+    }, 1000);
+  }
+}
+
+//creo una funzione che genera un nuovo messaggio amici (in bianco)
+function newFriendMessage(text) {
+  templateMsg = $(".template-message .new-message").clone();
+  templateMsg.find(".text-message").text(text);
+  templateMsg.find(".time-message").text(timeGen());
+  templateMsg.addClass("friendmsg");
+  $(".main-chat").append(templateMsg);
+}
+
+//creo una funzione che genera un nuovo messaggio utente (in verde) dall' array conversazioni
+function newAutoUserMessage(text) {
+  templateMsg = $(".template-message .new-message").clone();
+  templateMsg.find(".text-message").text(text);
+  templateMsg.find(".time-message").text(timeGen());
+  templateMsg.addClass("usermsg");
+  $(".main-chat").append(templateMsg);
+}
+
 //creo una funzione che mi permette di "ricorstruire"
 //il nome con la prima lettera maiuscola
 function upperCaseFirstLetter(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+  return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 //ogni volta che viene digitata una lettera da tastiera nella barra search dei contatti
@@ -259,6 +258,7 @@ $(".chat-search").keyup(function(event) {
   }
 });
 
+//al mouseenter e mouseleave di ogni messaggio fa comparire la freccia per le opzioni messsaggio
 $(document).on("mouseenter", ".new-message", function(){
   $(this).find(".arrow-option").animate({ "left": "0px", "opacity": "1" }, "fast" );
 });
@@ -267,16 +267,19 @@ $(document).on("mouseleave", ".new-message", function(){
   $(this).find(".arrow-option").animate({ "left": "10px", "opacity": "0" }, "fast" );
 });
 
+//al click della freccia compare la tendina con le opzioni messaggio
 $(document).on("click", ".arrow-option", function(){
   var arrowPos = $(this).position();
   $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
   $(this).next().addClass("dropdown").css({ "top": arrowPos.top, "left": arrowPos.left-100 }).animate({"opacity": "1" });
 });
 
+//al click su "elimina messaggio" rimuove il messaggio dal DOM
 $(document).on("click", ".deletemsg", function(){
   $(this).parents(".new-message").remove();
 });
 
+//se clicco in qualsiasi punto della chat fa sparire il menù
 $(".main-chat").click(function(){
   $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
 });
