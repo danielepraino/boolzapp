@@ -243,7 +243,7 @@ un fix per il display: flex che crea questo problema */
   border-radius: 10px;
   display: flex;
   margin-bottom: 3px;
-  padding: 10px 15px;
+  padding: 10px;
 }
 
 .new-message.usermsg {
@@ -288,12 +288,12 @@ un fix per il display: flex che crea questo problema */
 }
 
 .arrow-option {
-  width: 0;
   color: #999;
   font-size: 15px;
   position: relative;
-  display: none;
+  left: 10px;
   cursor: pointer;
+  opacity: 0;
 }
 
 .arrow-option i {
@@ -301,16 +301,22 @@ un fix per il display: flex che crea questo problema */
   width: 20px;
 }
 
-.arrow-option.show {
-  display: block;
-}
-
 .message-menu {
   position: absolute;
-    left: 192px;
-    top: 493px;
-    background-color: #FFF;
+  background-color: #FFF;
+  z-index: 1;
+  opacity: 0;
   display: none;
+}
+
+.message-menu li {
+  font-size: 14px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.message-menu li:hover {
+  background-color: #F4F5F5;
 }
 
 .message-menu.dropdown {

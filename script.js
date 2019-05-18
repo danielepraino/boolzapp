@@ -224,7 +224,7 @@ $(".friend-template.list").click(function(){
   var name = $(this).attr("data-friend-name");
   $(".user-img").attr("src", "img/" + name + ".jpg");
   $(".friend-bar-name").text(upperCaseFirstLetter(name));
-  console.log("POS: " + pos);
+  $(".message-menu").css({ "opacity": "0" });
   for (var j = 0; j < chatArr[pos].length; j++) {
     if(chatArr[pos][j][1] == 0) {
       newFriendMessage(chatArr[pos][j][0]);
@@ -260,15 +260,23 @@ $(".chat-search").keyup(function(event) {
 });
 
 $(document).on("mouseenter", ".new-message", function(){
-  $(this).find(".arrow-option").addClass("show").fadeIn().animate({ "left": "-10px" }, "fast" );
+  $(this).find(".arrow-option").animate({ "left": "0px", "opacity": "1" }, "fast" );
 });
 
 $(document).on("mouseleave", ".new-message", function(){
-  $(".arrow-option").removeClass("show");
-  $(".arrow-option").css({ "left": "0px" });
+  $(this).find(".arrow-option").animate({ "left": "10px", "opacity": "0" }, "fast" );
 });
 
-$(document).on("click", ".fa-chevron-down", function(){
-  console.log("BELLALLLAALALALALA");
-  $(this).parent().next().addClass("dropdown");
+$(document).on("click", ".arrow-option", function(){
+  var arrowPos = $(this).position();
+  $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
+  $(this).next().addClass("dropdown").css({ "top": arrowPos.top, "left": arrowPos.left-100 }).animate({"opacity": "1" });
+});
+
+$(document).on("click", ".deletemsg", function(){
+  $(this).parents(".new-message").remove();
+});
+
+$(".main-chat").click(function(){
+  $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
 });
