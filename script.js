@@ -137,26 +137,29 @@ var friendsArr = [
 
 //creo un array che contiene le chat fake
 var chatArr = [
-  [["Bravo",0], ["Bravissimo",1]],
-  [["Ieri sono andato in canoa",1], ["Ma va???",0]],
-  [["Ciao",0], ["Ciao",1]],
-  [["Bella",1], ["Bella",0]],
-  [["Bravo",0], ["Bravo",1]],
-  [["Sei sveglio?",1], ["Si",0]],
-  [["Ci vediamo",0], ["Si",1]],
-  [["Ok",1], ["Ok",0]],
-  [["No",0], ["Si",1]],
-  [["Si",1], ["No",0]],
-  [["Bravo",0], ["Bravissimo",1]],
-  [["Ieri",1], ["Oggi",0]],
+  [["Eccolooooo!",0], ["Eccolaaaaaa!",1], ["Come stai sorellì?",1], ["Tutto bene Jon!",0], ["Oh, grazie ancora per la spada!",1], ["FIGHISSIMA!",0], ["Figurati, così puoi allenarti e non rompi più le scatole a Sansa",1], ["Ma tanto sai che quella è tutta gne gne gne",0] ,["E vabbè dai",1], ["Ci sentiamo!",0] ,["Valar Morghulis!",0], ["Speriamo di no",1]],
+  [["Comunque potevi anche farti sentire",0], ["Non è che ti devo sempre scrivere io",0], ["Scusami, è che sono stato un bel po' incasinato sto periodo",1], ["Ti volevo mandare un articolo sul ghosting",0], ["Così te lo leggi bene bene",0], ["Ghosting...intendi Spettro?",1], ["Ma allora è vero quello che si dice in giro di te!",0], ["E cosa?",1] ,["Vedi? Non sai niente Jon Snow!",0]],
+  [["Fai attenzione al fondo delle pulci",0], ["Di sera è pericoloso",0], ["Weee grazie Melisà, ma tanto non ci devo andare",1], ["Portati la spada, ti conviene",0], ["Falla affilare prima",0], ["Non ci vadooo!",1], ["Ci mando Davos",1], ["Fai attenzione",0] ,["Con quello che si sente sui giornali",0], ["Oooook!",1], ["Ricordati che la notte è buia",0] ,["E piena di terrori",0]],
+  [["Hodor, hodor hodor hodor!",0], ["Sono contento Hodor, finalmente una buona notizia dai!",1], ["Hodor!",0], ["Bella!",1], ["Hodor hodor?",0], ["Mi sa di no, ho organizzato già con Ygritte",1], ["Sai che quella poi ci rimane male",1], ["Tanto ai quiz perdo sempre",1] ,["E poi mi dice che non so mai niente",1], ["Hodor hodor hodor, hodor! Hodor.",0] ,["Grazie, ti faccio sapere comunque!",1], ["HODOR!",0]],
+  [["Ascolta, ma puoi mettermi una buona parola con tu sai chi?",0], ["Eh, vedo che posso fare dai",1], ["Non hai capito fratè",0], ["Sto in fissa paurosa ",0], ["Mangio e me la vedo lì",0], ["Bevo latte di gigante e tac, eccola lì",0], ["Uccido due o tre corvi ed eccola",0], ["Si dai, ho capito Tormund",1] ,["Ricordami come ti chiamano...",1], ["Veleno dei giganti",0], ["Ti dovevano chiamare orzata delle moffette",1], ["Tutti simpatici qui al sud vedo",0]],
+  [["Guarda ti dico sta roba perché mi fido",1], ["Però tipo non lo devi dire a nessuno",1], ["Perché è un super segreto",1], ["Dai dimmi",0], ["No davvero eh, giura",1], ["Giuro",0], ["Giuri su...?",1], ["Giuro sulla testa di Lady che me possano accecamme!",0]],
+  [["Mai dimenticare chi sei, perché di certo il mondo non lo dimenticherà.",0], ["Ok, grazie", 1], ["Trasforma chi sei nella tua forza, così non potrà mai essere la tua debolezza.",0], ["Sì ok grazie!",1], ["Fanne un'armatura, e non potrà mai essere usata contro di te.",0], ["Grazie",1], ["Mostra che le loro parole possono ferirti, e non sarai più libero dalla derisione.",0], ["HO CAPITO! Grazie!",1] ,["Ma...hai smesso di bere vino?",1]],
+  [["Ho letto che a Vecchia Città c'è uno che vende un libro",0], ["Roba introvabile pare",0], ["Una vecchia ristampa",0], ["Dimmi che sono curioso!",1], ["Si intitola: crea da zero il tuo business ad Approdo del Re",0], ["Lo leggo e poi facciamo una cosa facile facile",0], ["Tipo?",1], ["Entriamo nel business dell'altofuoco!",0] ,["Te sei matto TOTALE",1], ["Famo i big dragoni d'oro!",0], ["Te lo dico io!",0]],
+  [["Weeee fratèèèè",0], ["Com'è?",0], ["Bene dai, te?",1], ["Na favolaaaa",0], ["Ancora con sti funghetti?",1], ["E dimmi, sta volta che hai visto?",1], ["St...o!",0], ["Più cresci e più diventi simpatico oh",1], ["Ma taci che pure da seduto sono più alto di te",0]],
+  [["Un uccelletto m'ha detto che ti interessa un certo articolo...",0], ["Scusa???",1], ["Dai non fare il finto tonto",0], ["Tanto già lo so",0], ["Quell'altra tenere un segreto mai eh!",1], ["Vabbè, mi serviva una daga di vetro di drago",1], ["Se me la puoi rimediare per domani",1], ["Spe che chiedo a quell'altro lì",0] ,["Ditocorto",0], ["Seee allora famo per il prossimo anno dai",1] ,["Uomo di poca fede. Te la rimedio facile",0], ["Però stai calmo",1] ,["Thanks!",1]],
+  [["Ma alla fine c'è pure tua sorella?",1], ["No, non c'è, tira pacco",0], ["Perché, ti interessa?",0], ["Ma che, ho chiesto solo perché è più furba di te",1], ["Grazie...",0], ["AHAHAHAHAHA",1], ["Fattela na risata ogni tanto dai",1], ["Sai che ultimamente ho poco da ridere...",0] ,["Si vabbè però con voi solo tragedie",1], ["Come si fa ad avere amici così",1]],
+  [["Ti ho raccontato di come mia figlia si è presa il morbo grigio?",0], ["Mi hai detto a scuola, no?",1], ["Si, lascia stare, mandano i bambini malati a scuola", 0], ["E poi si ammala tutta la classe", 0], ["Solo rotture di scatole ultimamente eh", 0], ["E devo pure star dietro a sta banda di disagiati", 0], ["Uhhh come ti capisco!", 1], ["Poi certi sono simpatici come Tywin Lannister, e t'ho detto tutto", 1]],
   [["Jaime mi ha detto che ci sarà pure lui",1], ["Lascia stare che sono incazzata nera",0], ["Mai che mi dia ascolto quello",0], ["Si comunque sei troppo duro con lui",1], ["Considerando pure quello che ha fatto per te",1], ["MAI CONTENTA",1], ["A John...te ce manno ora?",0], [":(",1]],
   [["Oh ma allora arrivi?",0], ["Si arrivo, stai calmo",1], ["Ma...come mai tutta sta fretta?",1], ["Fammi capire",1], ["E' che dopo devo incontrare Melisandre",0], ["E sai com'è quella, la luce, il fuoco e bla bla bla",0], ["Dai, finisco di lucidare Lungo Artiglio e arrivo",1]],
 ];
+
+var autoAnswerArr = ["Valar Morghulis", "Valar Dohaeris", "Un Lannister paga sempre i propri debiti", "L'inverno sta arrivando", "Fuoco e sangue", "Nostra è la furia", "Udite il mio ruggito", "Noi non seminiamo", "Crescere forti", "Mai inchinati, mai piegati, mai spezzati", "Famiglia, dovere, onore"];
 
 //richiamo la funzione per generare la lista contatti amici
 friendsList(friendsArr);
 
 //creo una funzione che genera al lista dei contatti amici andando a popolare il singolo contatto
+//inserisco la preview dell'ultimo messaggio, se è troppo lungo lo "taglio" aggiungendo i tre puntini
 function friendsList(arr) {
   for (var i = 0; i < arr.length; i++) {
     var templateFriend = $(".master-friend .friend-template ").clone();
@@ -168,7 +171,12 @@ function friendsList(arr) {
     templateFriend.find(".friend-time p").text(friendsArr[i].time);
     $(".friend-bar-status").text(friendsArr[i].status);
     var arrLength = chatArr[i].length;
-    templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-1][0]);
+    if (chatArr[i][arrLength-1][0].length < 35) {
+      templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-1][0]);
+    } else {
+      var cutPreview = chatArr[i][arrLength-1][0].substring(0,35) + "...";
+      templateFriend.find(".friend-text").find(".friend-preview").text(cutPreview);
+    }
     $(".user-friends").append(templateFriend);
   }
 }
@@ -208,7 +216,10 @@ function newUserMessage() {
     $(".main-chat").append(templateMsg);
     $(".input-message").val("");
     setTimeout(function() {
-      var autoText = "Ok!";
+      var random = Math.floor(Math.random() * autoAnswerArr.length);
+      console.log("random: " +random);
+      var autoText = autoAnswerArr[random];
+      console.log("autoText: " +autoText);
       chatArr[pos].push([autoText, 0]);
       newFriendMessage(autoText);
     }, 1000);
