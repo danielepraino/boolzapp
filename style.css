@@ -258,6 +258,10 @@ un fix per il display: flex che crea questo problema */
   margin-left: 10%;
 }
 
+.new-message.friendmsg .fa-check {
+  display: none;
+}
+
 .text-message {
   font-size: 15px;
   margin-right: 20px;
@@ -281,4 +285,34 @@ un fix per il display: flex che crea questo problema */
 
 .template-message {
   display: none;
+}
+
+.arrow-option {
+  width: 0;
+  color: #999;
+  font-size: 15px;
+  position: relative;
+  display: none;
+  cursor: pointer;
+}
+
+.arrow-option i {
+  height: 100%;
+  width: 20px;
+}
+
+.arrow-option.show {
+  display: block;
+}
+
+.message-menu {
+  position: absolute;
+    left: 192px;
+    top: 493px;
+    background-color: #FFF;
+  display: none;
+}
+
+.message-menu.dropdown {
+  display: block;
 }

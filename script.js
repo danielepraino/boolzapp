@@ -3,7 +3,7 @@ function timeGen() {
   var now = new Date();
   var hours = now.getHours();
   var minutes = now.getMinutes();
-  if (hours == 0) {
+  if (hours < 10) {
     hours = "0" + hours;
   }
   if(minutes < 10) {
@@ -55,7 +55,6 @@ function newFriendMessage(text) {
   templateMsg = $(".template-message .new-message").clone();
   templateMsg.find(".text-message").text(text);
   templateMsg.find(".time-message").text(timeGen());
-  templateMsg.find("i").hide();
   templateMsg.addClass("friendmsg");
   $(".main-chat").append(templateMsg);
 }
@@ -68,27 +67,6 @@ function newAutoUserMessage(text) {
     templateMsg.addClass("usermsg");
     $(".main-chat").append(templateMsg);
 }
-
-//ogni volta che viene digitata una lettera da tastiera nella barra search dei contatti
-//per ogni elemento friend vado a leggere il suo attributo e verifico che nel valore
-//dell'attributo ci sia uno dei caratteri digitati; se cancello delle lettere mi
-//mostra nuovamente la lista contatti
-$(".chat-search").keyup(function(event) {
-  var search = $(".chat-search").val().toLowerCase();
-  $(".friend").hide();
-  if (search.length > 0) {
-    $(".friend").each(function(){
-      searchFriend = $(this).attr("data-friend-name");
-      if(searchFriend.includes(search)) {
-        $(this).show();
-      }
-    });
-  }
-  if (event.which == 8) {
-    $(".user-friends").first().addClass("selected");
-    $(".friend").show();
-  }
-});
 
 //creo un array con i contatti, ogni contatto avrà le sue proprietà
 var friendsArr = [
@@ -232,16 +210,15 @@ function friendGen(i) {
   templateFriend.find(".friend-time p").text(friendsArr[i].time);
   $(".friend-bar-status").text(friendsArr[i].status);
   var arrLength = chatArr[i].length;
-  templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-2][0]);
+  templateFriend.find(".friend-text").find(".friend-preview").text(chatArr[i][arrLength-1][0]);
   $(".user-friends").append(templateFriend);
 }
 
 //creo una funzione che, al click del contatto lo selezione a va a popolare
 //la chat con il contenuto dell'array delle chat fake, alla posizione corrispondente
-//ATTENZIONE BUG: ho provato a fare .empty() sul div della chat ma poi non
-//va più a popolare il div con i dati inseriti
 $(".friend-template.list").click(function(){
   $(".friend-template.list").removeClass("selected");
+  $(".main-chat").empty();
   $(this).addClass("selected");
   var pos = $(this).attr("data-pos");
   var name = $(this).attr("data-friend-name");
@@ -263,6 +240,35 @@ function upperCaseFirstLetter(text) {
     return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-// $(document).on("click", "selettore", function(){
-//
-// });
+//ogni volta che viene digitata una lettera da tastiera nella barra search dei contatti
+//per ogni elemento friend vado a leggere il suo attributo e verifico che nel valore
+//dell'attributo ci sia uno dei caratteri digitati; se cancello delle lettere mi
+//mostra nuovamente la lista contatti
+$(".chat-search").keyup(function(event) {
+  var search = $(".chat-search").val().toLowerCase();
+  $(".friend-template.list").hide();
+  if (search.length > 0) {
+    $(".friend-template.list").each(function(){
+      searchFriend = $(this).attr("data-friend-name");
+      if(searchFriend.includes(search)) {
+        $(this).show();
+      }
+    });
+  } else if (search.length == 0) {
+    $(".friend-template.list").show();
+  }
+});
+
+$(document).on("mouseenter", ".new-message", function(){
+  $(this).find(".arrow-option").addClass("show").fadeIn().animate({ "left": "-10px" }, "fast" );
+});
+
+$(document).on("mouseleave", ".new-message", function(){
+  $(".arrow-option").removeClass("show");
+  $(".arrow-option").css({ "left": "0px" });
+});
+
+$(document).on("click", ".fa-chevron-down", function(){
+  console.log("BELLALLLAALALALALA");
+  $(this).parent().next().addClass("dropdown");
+});
