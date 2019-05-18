@@ -183,6 +183,13 @@ input:focus {
   background-repeat:repeat;
   float: right;
   position: relative;
+  flex-direction: column;
+  align-content: space-between;
+  display: none;
+}
+
+.messages.visible {
+  display: flex;
 }
 
 .friend-bar {
@@ -211,12 +218,6 @@ un fix per il display: flex che crea questo problema */
   flex-grow: 1;
   overflow-y: scroll;
   padding-bottom: 20px;
-}
-
-.messages {
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
 }
 
 .message-send {
@@ -321,4 +322,58 @@ un fix per il display: flex che crea questo problema */
 
 .message-menu.dropdown {
   display: block;
+}
+
+/**WELCOME SCREEN**/
+
+.welcome-container {
+  height: 100%;
+  display: flex;
+}
+
+.welcome-container.invisible {
+  display: none;
+}
+
+.welcome-screen {
+  width: 100%;
+  height: 100%;
+  color: #a0abb1;
+  background-color: #f7f9fa;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-bottom: 5px solid #58e870;
+}
+
+.welcome-screen img {
+  height: 50%;
+  margin-bottom: 50px;
+}
+
+.welcome-text {
+  width: 45%;
+  border-bottom: 1px solid #e1e9eb;
+}
+
+.welcome-text h1 {
+  color: #657177;
+  font-size: 33px;
+  font-weight: normal;
+}
+
+.welcome-text p {
+  margin: 30px 0;
+}
+
+.welcome-footer {
+  margin-top: 30px;
+}
+
+.welcome-footer span {
+  color: #07bc4c;
+  font-weight: bold;
 }

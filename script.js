@@ -186,6 +186,8 @@ var pos;
 //creo una funzione che, al click del contatto lo selezione a va a popolare
 //la chat con il contenuto dell'array delle chat fake, alla posizione corrispondente
 $(".friend-template.list").click(function(){
+  $(".welcome-container").addClass("invisible");
+  $(".messages").addClass("visible");
   $(".friend-template.list").removeClass("selected");
   $(".main-chat").empty();
   $(this).addClass("selected");
