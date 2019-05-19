@@ -212,6 +212,8 @@ function newUserMessage() {
   if (newTextMsg.length > 0) {
     chatArr[pos].push([newTextMsg, 1]);
     templateMsg = $(".template-message .new-message").clone();
+    templateMsg.attr("data-friendpos", pos);
+    templateMsg.attr("data-msgpos", chatArr[pos].length-1);
     templateMsg.find(".text-message").text(newTextMsg);
     templateMsg.find(".time-message").text(timeGen());
     templateMsg.addClass("usermsg");
@@ -223,7 +225,7 @@ function newUserMessage() {
       var autoText = autoAnswerArr[random];
       console.log("autoText: " +autoText);
       chatArr[pos].push([autoText, 0]);
-      newFriendMessage(autoText);
+      newFriendMessage(autoText, pos, chatArr[pos].length-1);
     }, 1000);
   }
 }
