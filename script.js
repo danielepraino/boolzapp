@@ -137,7 +137,7 @@ var friendsArr = [
 
 //creo un array che contiene le chat fake
 var chatArr = [
-  [["Eccolooooo!",0], ["Eccolaaaaaa!",1], ["Come stai sorellì?",1], ["Tutto bene Jon!",0], ["Oh, grazie ancora per la spada!",1], ["FIGHISSIMA!",0], ["Figurati, così puoi allenarti e non rompi più le scatole a Sansa",1], ["Ma tanto sai che quella è tutta gne gne gne",0] ,["E vabbè dai",1], ["Ci sentiamo!",0] ,["Valar Morghulis!",0], ["Speriamo di no",1]],
+  [["Eccolooooo!",0], ["Eccolaaaaaa!",1], ["Come stai sorellì?",1], ["Tutto bene Jon!",0], ["Oh, grazie ancora per la spada!",0], ["FIGHISSIMA!",0], ["Figurati, così puoi allenarti e non rompi più le scatole a Sansa",1], ["Ma tanto sai che quella è tutta gne gne gne",0] ,["E vabbè dai",1], ["Ci sentiamo!",0] ,["Valar Morghulis!",0], ["Speriamo di no",1]],
   [["Comunque potevi anche farti sentire",0], ["Non è che ti devo sempre scrivere io",0], ["Scusami, è che sono stato un bel po' incasinato sto periodo",1], ["Ti volevo mandare un articolo sul ghosting",0], ["Così te lo leggi bene bene",0], ["Ghosting...intendi Spettro?",1], ["Ma allora è vero quello che si dice in giro di te!",0], ["E cosa?",1] ,["Vedi? Non sai niente Jon Snow!",0]],
   [["Fai attenzione al fondo delle pulci",0], ["Di sera è pericoloso",0], ["Weee grazie Melisà, ma tanto non ci devo andare",1], ["Portati la spada, ti conviene",0], ["Falla affilare prima",0], ["Non ci vadooo!",1], ["Ci mando Davos",1], ["Fai attenzione",0] ,["Con quello che si sente sui giornali",0], ["Oooook!",1], ["Ricordati che la notte è buia",0] ,["E piena di terrori",0]],
   [["Hodor, hodor hodor hodor!",0], ["Sono contento Hodor, finalmente una buona notizia dai!",1], ["Hodor!",0], ["Bella!",1], ["Hodor hodor?",0], ["Mi sa di no, ho organizzato già con Ygritte",1], ["Sai che quella poi ci rimane male",1], ["Tanto ai quiz perdo sempre",1] ,["E poi mi dice che non so mai niente",1], ["Hodor hodor hodor, hodor! Hodor.",0] ,["Grazie, ti faccio sapere comunque!",1], ["HODOR!",0]],
@@ -295,4 +295,17 @@ $(document).on("click", ".deletemsg", function(){
 //se clicco in qualsiasi punto della chat fa sparire il menù
 $(".main-chat").click(function(){
   $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
+});
+
+var userWidth = $(".user").width();
+var userHeight = $(".user").height();
+var userPos = $(".user").position();
+$(".user-card").css({ "width": userWidth, "height": userHeight, "left": userPos.left-userWidth });
+
+$(".profile-img").click(function(){
+  $(".user-card").animate({ "left": userPos.left }, "fast");
+});
+
+$(".arrow-card").click(function(){
+  $(".user-card").animate({ "left": -userWidth }, "fast");
 });
