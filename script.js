@@ -288,7 +288,7 @@ $(document).on("mouseleave", ".new-message", function(){
 $(document).on("click", ".arrow-option", function(){
   var arrowPos = $(this).position();
   $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
-  $(this).next().addClass("dropdown").css({ "top": arrowPos.top, "left": arrowPos.left-100 }).animate({"opacity": "1" });
+  $(this).next().addClass("dropdown").css({ "top": arrowPos.top-5, "left": arrowPos.left-50 }).animate({"opacity": "1" });
 });
 
 //al click su "elimina messaggio" rimuove il messaggio dal DOM e dall'array corrispondente
@@ -304,6 +304,7 @@ $(".main-chat").click(function(){
   $(".message-menu").removeClass("dropdown").css({ "opacity": "0" });
 });
 
+//vado a posizionarmi dinamicamente user-card per poi andare ad animarlo in entrata e uscita
 var userWidth = $(".user").width();
 var userHeight = $(".user").height();
 var userPos = $(".user").position();
@@ -315,4 +316,9 @@ $(".profile-img").click(function(){
 
 $(".arrow-card").click(function(){
   $(".user-card").animate({ "left": -userWidth }, "fast");
+});
+
+//ricarico la finestra al resize per il responsive
+$(window).on("resize", function(){
+  location.reload();
 });
