@@ -198,9 +198,9 @@ $(".friend-template.list").click(function(){
   $(".message-menu").css({ "opacity": "0" });
   for (var j = 0; j < chatArr[pos].length; j++) {
     if(chatArr[pos][j][1] == 0) {
-      newFriendMessage(chatArr[pos][j][0]);
+      newFriendMessage(chatArr[pos][j][0], pos, j);
     } else {
-      newAutoUserMessage(chatArr[pos][j][0]);
+      newAutoUserMessage(chatArr[pos][j][0], pos, j);
     }
   }
 });
@@ -229,8 +229,10 @@ function newUserMessage() {
 }
 
 //creo una funzione che genera un nuovo messaggio amici (in bianco)
-function newFriendMessage(text) {
+function newFriendMessage(text, arrPos, arrMsg) {
   templateMsg = $(".template-message .new-message").clone();
+  templateMsg.attr("data-friendpos", arrPos);
+  templateMsg.attr("data-msgpos", arrMsg);
   templateMsg.find(".text-message").text(text);
   templateMsg.find(".time-message").text(timeGen());
   templateMsg.addClass("friendmsg");
@@ -238,8 +240,10 @@ function newFriendMessage(text) {
 }
 
 //creo una funzione che genera un nuovo messaggio utente (in verde) dall' array conversazioni
-function newAutoUserMessage(text) {
+function newAutoUserMessage(text, arrPos, arrMsg) {
   templateMsg = $(".template-message .new-message").clone();
+  templateMsg.attr("data-friendpos", arrPos);
+  templateMsg.attr("data-msgpos", arrMsg);
   templateMsg.find(".text-message").text(text);
   templateMsg.find(".time-message").text(timeGen());
   templateMsg.addClass("usermsg");
@@ -287,8 +291,11 @@ $(document).on("click", ".arrow-option", function(){
   $(this).next().addClass("dropdown").css({ "top": arrowPos.top, "left": arrowPos.left-100 }).animate({"opacity": "1" });
 });
 
-//al click su "elimina messaggio" rimuove il messaggio dal DOM
+//al click su "elimina messaggio" rimuove il messaggio dal DOM e dall'array corrispondente
 $(document).on("click", ".deletemsg", function(){
+  var friendPos = $(this).parents(".new-message").attr("data-friendpos");
+  var msgPos = $(this).parents(".new-message").attr("data-msgpos");
+  chatArr[friendPos].splice(msgPos, 1);
   $(this).parents(".new-message").remove();
 });
 
